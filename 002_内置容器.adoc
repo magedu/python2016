@@ -1,0 +1,199 @@
+= 内置容器
+comyn <me@xueming.li>
+v1.0
+:source-highlighter: pygments
+:revealjs_history: false
+:revealjs_center: false
+:revealjs_embedded: true
+:revealjsdir: ../reveal.js
+:imagesdir: assets/images/2
+:homepage: http://www.magedu.com
+
+== 列表
+* list是最常用的线性数据结构
+* list是一系列元素的有序组合
+* list是可变的
+
+=== 列表的操作
+[%step]
+* 增：`append`, `extend`, `insert`
+* 删：`clear`, `pop`, `remove`
+* 改：`reverse`, `sort`
+* 查：`count`,`index`
+* 其他：`copy`
+
+== 元组
+* tuple和list大多数地方类似
+* tuple是不可变结构
+
+=== 元组常用操作
+[%step]
+* 查：`count`,`index`
+
+== 下标操作与切片
+* 获取或修改当前值 `lst[x]` `lst[x] = n`
+* lst[b:e]
+* lst[b:e:s]
+
+== packing & unpacking
+[source,python]
+----
+x, y = (1, 2) # <1>
+t = x, y # <2>
+x, *y = (1, 2, 3, 4) # <3>
+*x, y = (1, 2, 3, 4) # <4>
+----
+<1> `x=1, y=2`
+<2> `t=(1, 2)`
+<3> `x=1, y=(2, 3, 4)`
+<4> `x=(1, 2, 3), y=4`
+
+== packing & unpacking
+[source,python]
+----
+x, *_, y = (1, 2, 3, 4) # <1>
+x, *_, y, z = (1, 2, 3, 4) #<2>
+x, (y, z) = (1, (2, 3)) # <3>
+----
+<1> `x=1, y=4`
+<2> `x=1, y=3, z=4`
+<3> `x=1, y=2, z=3`
+
+== 集合
+[%step]
+* 聚合的含义和数学上集合的含义相同
+* 集合不是线性结构
+* 集合元素是唯一的
+* 集合元素是可hash的
+
+=== 集合的操作
+[%step]
+* 增：`add`, `update`
+* 删：`remove`, `discard`, `clear`, `pop`
+* 集合运算：`union`, `intersection`, `difference`, `symmetric_difference`
+* 集合判断：`issubset`, `issuperset`, `isdisjoint`
+
+== 字典
+[%step]
+* 字典是一种无序集合
+* 字典是一种KV结构
+* value可以是任何对象
+* key是唯一的
+* key必须是可hash对象
+
+=== 字典的操作
+[%step]
+* 字典主要通过key来访问
+* `keys`, `values`, `items` 用于遍历字典
+* `pop`, `popitem` 用于删除元素
+
+== 列表解析
+* 列表解析是Python重要的语法糖
+* 列表解析的速度比 `for in` 迭代快
+
+=== 基本语法
+[source,python]
+----
+ret = [expression for item in iterator]
+----
+
+等价于
+
+[source,python]
+----
+ret = []
+for item in iterator:
+    ret.append(expression)
+----
+
+=== 返回迭代器
+[source,python]
+----
+(expression for item in iterator)
+----
+
+等价于
+
+[source,python]
+----
+for item in iterator:
+    yield expression
+----
+
+=== 字典解析
+[source,python]
+----
+ret = {exprK:exprV for item in iterator}
+----
+
+等价于
+
+[source,python]
+----
+ret = dict()
+for item in iterator:
+    ret.update({exprK: exprV})
+----
+
+=== 集合解析
+[source,python]
+----
+ret = {expression for item in iterator}
+----
+
+等价于
+
+[source,python]
+----
+ret = set()
+for item in iterator:
+    ret.add(expression)
+----
+
+=== 带条件的列表解析
+[source,python]
+----
+ret = [expression for item in iterator if condition]
+----
+
+等价于
+
+[source,python]
+----
+ret = []
+for item in iterator:
+    if condition:
+        ret.append(expression)
+----
+
+=== 带多个条件的列表解析
+[source,python]
+----
+ret = [expression for item in iterator if X if Y]
+----
+
+等价于
+
+[source,python]
+----
+ret = []
+for item in iterator:
+    if X and Y:
+        ret.append(expression)
+----
+
+=== 笛卡尔积
+[source,python]
+----
+ret = [expression for x in X for y in Y]
+----
+
+等价于
+
+[source,python]
+----
+ret = []
+for x in X:
+    for y in Y:
+        ret.append(expression)
+----
