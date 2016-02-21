@@ -1,0 +1,234 @@
+= 基础语法
+comyn <me@xueming.li>
+v1.0
+:source-highlighter: pygments
+:revealjs_history: false
+:revealjs_center: false
+:revealjs_embedded: true
+:revealjsdir: ../reveal.js
+:imagesdir: assets/images/1
+:homepage: http://www.magedu.com
+
+== hello world
+[source,python]
+print('hello world')
+
+== 常量&变量
+
+=== 字面常量
+
+[%step]
+* 单独出现的数字，字符串等
+* 字面常量是解释器里的一块内存
+* 单独出现的字面常量无意义
+
+=== 变量
+
+[%step]
+* 解释器中一段内存的名称
+* Python中，变量都是引用
+
+=== 数据类型
+
+[%step]
+* Python是强类型动态语言
+* 数据类型是对用来约束数据的。
+* 原始类型和复合类型
+
+== 运算符&表达式
+
+=== 算术运算符
+_a = 10, b = 20_
+[cols="2,2,5,4", options="header"]
+|===
+|符号|名称|描述|实例
+|+|加|两个对象相加|a + b = 30
+|-|减|两个对象相减|a - b = -10
+|*|乘|两个对象相乘|a * b = 200
+|/|除|两个对象相除|a / b = 0.5
+|===
+
+=== 算术运算符
+_a = 10, b = 20_
+[cols="2,2,5,4", options="header"]
+|===
+|符号|名称|描述|实例
+|%|取模|返回除法的余数| a % b = 10
+|**|幂|返回x的y次幂|a ** b = 100000000000000000000
+|//|取整除|返回除法运算的整数部分|a // b = 0
+|===
+
+=== 位运算符
+_a=60(00111100) b=13(00001101)_
+[cols="2,5,4"]
+|===
+|符号|描述|实例
+|&|按位与|a & b = 12
+|\||按位或| a\|b = 61
+|^|按位异或|a^b = 49
+|~|按位取反| ~a = -61
+|===
+
+=== 位运算符
+_a=60(00111100) b=13(00001101)_
+[cols="2,5,4"]
+|===
+|符号|描述|实例
+|<<|左移| a << 2 = 240
+|>>|右移| a >> 2 = 15
+|===
+
+=== 比较运算符
+_a = 10, b = 20_
+[cols="2,5,4", options="header"]
+|===
+|符号|描述|实例
+|==|等于| a == b = False
+|!=|不等于| a != b = True
+|>|大于| a > b = False
+|<|小于|a < b = True
+|===
+
+=== 比较运算符
+_a = 10, b = 20_
+[cols="2,5,4", options="header"]
+|===
+|符号|描述|实例
+|>=|大于等于| a >= b = False
+|\<=|小于等于|a \<= b = True
+|===
+
+=== 逻辑运算符
+_a = True, b = False_
+[cols="2,5,4", options="header"]
+|===
+|符号|描述|实例
+|and|与| a and b = False
+|or|或|a or b = True
+|not|非| not a = False
+|===
+
+=== 其他运算符
+[cols="2,3,6", options="header"]
+|===
+|符号|类别|描述
+|=|赋值运算符|a = b, 把b的值赋给a
+|in|成员运算符| a in b, a是否b的成员
+|not in| 成员运算符| a not in b, a是否不是b的成员
+|is|身份运算符| a is None， a是否None
+|is not|身份运算符| a is not None， a是否不是None
+|===
+
+=== 表达式
+* 常量、变量和赋值运算符之外的运算符的组合
+* 表达式可以求值
+
+=== 表达式与优先级
+[%step]
+* 一元高于二元
+* 数值高于逻辑
+* 算术运算高于位运算
+* 乘除高于加减
+* 拿不准时加括号
+
+== 程序结构
+对于大多数语言来说，有且仅有三种结构：
+
+* 顺序结构
+* 分支结构
+* 循环结构
+
+=== 顺序结构
+* 顺序结构是绝大多数编程语言的默认结构
+* 指令按照书写顺序依次执行
+[source,python]
+----
+a = 10
+a += 2
+a << 2
+----
+a = 48
+
+=== 分支结构
+
+=== `if` 语句
+当条件满足时，进入另外一个分支，执行一个块，执行完成重新回到主分支
+
+[source,python]
+----
+if condition: # <1>
+    block # <2>
+----
+<1> Python 以 `:` 开始一个块
+<2> Python 使用缩进标示块
+
+=== `else` 子句
+在 `if` 语句的基础上，当条件不满足时，执行一个块，执行完成重新回到主分支
+[source,python]
+----
+if condition:
+    block
+else:
+    block
+----
+
+=== `elif` 子句
+`elif` 是 `else` 和 `if` 的合体， 在 `if` 判断失效的情况下，做进一步判断
+[source,python]
+----
+if condition:
+    block
+elif:
+    block
+----
+
+=== 关于 `switch`
+Python中并没有 `switch` 结构， 因为 `switch`结构完全可以由 `if elif else`语句来实现
+
+=== 循环结构
+Python中有两种循环结构：
+
+* `while` 语句
+* `for` 语句
+
+=== `while` 语句
+循环执行，知道条件不满足，循环体内修改条件
+[source,python]
+----
+while condition:
+    block
+----
+
+=== `for` 语句
+遍历某个可迭代对象的所有元素，循环体不应该修改迭代器
+[source,python]
+----
+for item in iterator:
+    block
+----
+
+=== `range` 函数
+`range` 函数产生一个生成器，通常用于控制循环次数
+
+* `range(x)` [0, x)
+* `range(m, n)` [m, n)
+* `range(m, n, s)` [m, n), 步长为 s
+
+=== `break` 子句
+* 只能出现在循环结构中
+* 用于跳出当前循环结构
+
+=== `continue` 子句
+* 只能出现在循环结构中
+* 用于跳过此次迭代的剩余操作
+
+=== `else` 子句
+循环结构的 `else` 子句是Python特有的，用于表示一个循环是 *未经`break`跳出* 的
+
+[source,python]
+----
+for item in iterator:
+    block
+else:
+    block
+----

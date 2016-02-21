@@ -1,5 +1,3 @@
 *.swp
-presentations/asciidoctor-reveal.js
-presentations/build.sh
-presentations/reveal.js
-presentations/target
+.python-version
+.ipynb_checkpoints

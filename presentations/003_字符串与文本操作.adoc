@@ -1,0 +1,108 @@
+= 字符串与文本操作
+comyn <me@xueming.li>
+v1.0
+:source-highlighter: pygments
+:revealjs_history: false
+:revealjs_center: false
+:revealjs_embedded: true
+:revealjsdir: ../reveal.js
+:imagesdir: assets/images/3
+:homepage: http://www.magedu.com
+
+== 字符串
+* Python 2和Python 3最大的差别就在于字符串
+* Python 2中字符串是byte的有序序列
+* Python 3中字符串是unicode的有序序列
+* 字符串是不可变的
+* 字符串支持下标与切片
+
+== 字符串格式化
+[%step]
+* Python字符串支持两种方式格式化
+* print style format
+* format方法
+
+=== print style format
+[source,python]
+----
+template % tuple # <1>
+template % dict # <2>
+----
+<1> `template` 为带有一些标记的字符串，使用 `tuple` 中的元素一次填充
+<2> `template` 为带有一些标记的字符串，使用 `dict` 中的values按key填充
+
+=== template 的一般格式
+[source,python]
+----
+% (key) flag conversion # <1> <2> <3> <4>
+----
+<1> `%` 开始
+<2> 可选的 `(key)` 如果指定了key， 将从字典中获取对应的value， 否则根据位置从元组中获取
+<3> 可选的 flag
+<4> 必选的 conversion
+
+=== flag
+[cols="1,4,4", options="header"]
+|===
+|Flag|说明|实例
+|#|此处 `#` 代表一个数字，指定宽度，如果宽度不够，会更具以下的规则填充|`'%3s' % ('a', )` -> '••a'
+|0|使用0填充，仅适用于数字|`'%03d' % (1,)` -> '001'
+|•|使用空格填充，默认行为|`'%•3d' % (1,) ` -> '••1'
+|===
+
+=== flag
+[cols="1,4,4", options="header"]
+|===
+|Flag|说明|实例
+|-|右边使用空格填充|`'%-3d' % (1,)` -> '1••'
+|+|填充之前增加`+` 仅对于正数|`'%+03d' % (1, )` -> '+01'
+|===
+
+=== Conversion
+[cols="1,5,1,5", options="header"]
+|===
+|符号|说明|符号|说明
+|d|整数|i|整数
+|o|八进制整数|u|整数，已废弃
+|x|小写十六进制整数|X|大写十六进制整数
+|f|浮点数|F|浮点数
+|e|小写科学计数法|E|大写科学计数法
+|===
+
+=== Conversion
+[cols="1,5,1,5", options="header"]
+|===
+|符号|说明|符号|说明
+|g|同f， 如果指数小于-4，同e|G|同f， 如果指数小于-4，同E
+|c|字符，接收unicode编码或单字符字符串|a|字符串，使用 `ascii` 函数转换
+|r|字符串，使用 `repr` 函数转换|s|字符串，使用 `str` 函数转换
+|===
+
+=== format函数
+[source,python]
+----
+template.format(*args, **kwargs) # <1> <2> <3> <4>
+----
+<1> `template` 使用 `{}` 标示变量
+<2> `{}` 或 `{\d+}` 使用 `*args` 按顺序填充
+<3> `{key}` 使用 `**kwargs` 按key填充
+<4> https://docs.python.org/3/library/string.html#formatstrings[Format String Syntax]
+
+
+== 字符串常用操作
+* 字符串连接 `join`
+* 字符串分割 `split`, `rsplit`, `splitlines`, `partition`, `rpartition`
+* 字符串修改-大小写 `capitalize`, `title`, `lower`, `upper`, `swapcase`
+* 字符串修改-填充清除 `center`, `ljust`, `rjust`, `zfill`, `strip`, `rstrip`, `lstrip`
+* 字符串判断 `startswith`, `endswith`, `is{asterisk}`
+* 字符串查找替换 `count`, `find`, `rfind`, `index`, `rindex`,`replace`
+
+== str与bytes
+[%step]
+* Python3中严格区分了文本和二进制数据
+* Python2并没有严格区分
+* 文本数据使用str类型，底层实现是unicode
+* 二进制数据使用bytes类型，底层是byte
+* str使用encode方法转化为bytes
+* bytes方法使用decode方法转化为str
+* 由于清晰的区分文本和二进制，Python3解决了大多数Python2的编码问题
