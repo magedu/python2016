@@ -1,0 +1,89 @@
+= 课堂回顾
+2016-02-21
+
+== 环境准备
+
+=== 安装pyenv
+
+* yum -y install git gcc make patch zlib-devel gdbm-devel openssl-devel sqlite-devel bizp2-devel readline-devel
+* curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
+
+=== pyenv 使用
+
+* pyenv install 3.4.2
+* pyenv virtualenv 3.4.2 magedu
+* pyenv local magedu
+
+=== ipython 安装
+
+* pip install ipython
+* pip install jupyter
+* jupyter notebook
+
+
+== Python基础语法
+
+=== 常量、变量、操作符、表达式
+
+* 字面常量
+* 变量
+* 数据类型
+* 操作符 特别注意出发操作 /
+* 操作符优先级
+* 表达式  特殊注意 逻辑操作的 *短路*
+
+=== 程序控制结构
+
+==== 顺序结构
+
+默认结构
+
+==== 分支结构
+
+* if 语句
+* if else 语句
+* if elif else 语句
+* 永远只有一个分支会被执行
+
+=== 循环结构
+* while语句
+* for in 语句
+* for in的循环体里面永远不要修改迭代器
+* break语句
+* continue语句
+* else字句以及使用场景
+
+== 内置数据结构
+
+=== 列表
+
+* 创建列表 [] list()
+* 列表的增删改查操作
+
+=== 元组
+
+* 创建元组 () tupel()
+* 元组不可变
+* 仅有的两个操作 index count
+
+=== 下标操作与切片
+
+* 通过下标访问元素
+* 切片 返回一个区间 [start:stop:step]
+* 切片的每个参数都可以是正整数，也可以是负整数
+* 切片每个参数的含义
+* 切片每个参数的默认值， start=0, stop=len(li) step=1
+
+=== 集合
+
+* 创建集合 {1， 2， 3}，set()
+* 集合的增删
+* 集合的集合操作
+
+=== 字典
+
+* 创建字典 {} , dict()
+* 字典的遍历 keys, values, items
+* get 方法, 当key不存在的时候返回默认值， 默认的默认值是None
+* pop,popitem 方法， 从字典中删除元素
+
