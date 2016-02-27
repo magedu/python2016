@@ -1,0 +1,25 @@
+== dict
+
+* 初始化
+* 获取元素， 下标操作和get
+* 修改元素
+* 删除元素 pop popitem del
+* 遍历 keys values items
+
+
+== 列表解析
+
+* 基本语法 [expr for item in iterator]
+* 带条件
+* 带多个条件的 相当and
+* 多个迭代器 相当于嵌套的循环
+* 集合解析
+* 字典解析
+
+
+== 字符串
+
+* 字符串是线性结构 切片 成员运算符 可以迭代
+* 字符串格式化 print style， format方法
+* 字符串的若干操作 join split strip replace startswith endswith
+* str 和bytes区别和相互转化 Python2 和Python3处理字符串的一些区别
