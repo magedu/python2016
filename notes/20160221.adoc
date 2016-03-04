@@ -5,7 +5,7 @@
 
 === 安装pyenv
 
-* yum -y install git gcc make patch zlib-devel gdbm-devel openssl-devel sqlite-devel bizp2-devel readline-devel
+* yum -y install git gcc make patch zlib-devel gdbm-devel openssl-devel sqlite-devel bzip2-devel readline-devel
 * curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
 
 === pyenv 使用
