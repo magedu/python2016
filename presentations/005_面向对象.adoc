@@ -1,0 +1,370 @@
+= 面向对象
+comyn <me@xueming.li>
+v1.0
+:source-highlighter: pygments
+:revealjs_history: false
+:revealjs_center: false
+:revealjs_embedded: true
+:revealjsdir: ../reveal.js
+:imagesdir: ../assets/images/5
+:homepage: http://www.magedu.com
+
+== 编程范式
+
+[%step]
+* 编程范式指的是软件工程中的一种方法学
+* 常见的编程范式有：OOP、FP、PP、IP
+* 通常每种语言都会提倡一些范式，也有的语言支持多种范式
+* Python是一种多范式语言，但是对OOP支持最好
+
+== OOP的基本概念
+
+=== 基本哲学
+
+[%step]
+* 世界是由对象组成的
+* 对象具有运动规律和内部状态
+* 对象之间的相互作用和通讯构成世界
+
+=== 对象的特性
+
+[%step]
+* 唯一性：世界上没有两片相同的树叶
+* 分类性：分类是对现实世界的抽象
+
+=== OOP的三大特征
+
+[%step]
+* 继承
+* 多态
+* 封装
+
+=== 面向对象的本质
+
+[%step]
+* 面向对象是对数据和行为的封装
+* 但是有时候，数据仅仅是数据，方法仅仅是方法
+
+== 组织数据
+
+=== !
+
+[source,python]
+----
+data = (13, 63, 5, 378, 58, 40)
+
+def avg(data):
+    return sum(data) / len(data)
+
+print(avg(data))
+----
+
+
+=== 门的例子
+
+[%step]
+* 数据：门牌号、 打开/关闭的状态
+* 操作：打开、关闭
+
+=== 过程化的组织方法
+
+[source,python]
+----
+door1 = [1, 'closed']
+door2 = [1, 'closed']
+
+def open_door(door):
+    door[1] = 'opening'
+    return door
+
+def close_door(door):
+    door[1] = 'close'
+    return door
+----
+
+=== 面向对象的组织方法
+
+[source,python]
+----
+class Door(object):
+    def __init__(self, number, status):
+        self.number = number
+        self.status = status
+
+    def open(self):
+        self.status = 'opening'
+
+    def close(self):
+        self.status = 'closed'
+----
+
+
+== 类的定义与初始化
+
+=== 定义类
+
+[%step]
+[source,python]
+----
+class ClassName:
+----
+
+[source,python]
+----
+class ClassName(parents):
+----
+
+=== 定义方法
+
+[source,python]
+----
+class ClassName(object):
+    def method_name(self, args): # <1> <2>
+        pass
+----
+<1> 第一个参数必须是 `self` 其他的和定义函数没有区别
+<2> `self` 是一个变量，指向对象本身。`self` 可以是任意合法的变量名
+
+=== 构造方法
+
+[source,python]
+----
+class ClassName(object):
+    def __init__(self, arg):
+        pass
+----
+
+=== 实例化
+
+[source,python]
+----
+instance = ClassName(arg) # <1>
+----
+<1> 对象的实例化，其实是调用了类的构造方法。但是 `self` 参数无需传入，解释器会自动传入。
+
+=== 关于构造函数中的 `self`
+
+[%step]
+* 我们说 `实例化其实是调用构造方法`
+* 我们还说 `self指向对象本身`
+* 那么，调用构造方法的时候 `self` 是什么鬼？
+
+=== 关于构造函数中的 `self`
+
+事实上， `\\__init__` 方法并非实例化时执行的第一个方法。当Python实例化一个对象时， 首先调用的是 `\\__new__` 方法，`\\__new__` 方法的第一个参数指向类本身。并且返回类的一个实例。 这个实例正是传递给 `\\__init__` 的 `self` 。所以严格的讲，`\\__new__` 方法才是真正创建实例的方法， 而 `\\__init__` 方法只是初始化实例的数据。
+
+
+== 访问控制
+
+=== 实例变量和实例方法
+
+* 任意实例方法内都可以定义定义实例变量， 通常在构造方法中定义
+* 定义在类中、不加任何装饰器，第一个参数是 `self` 的方法都叫做实例方法
+* 实例变量和实例方法绑定到特定的实例
+
+=== 私有成员
+
+* 以双下划线开始
+* 不以双下划线结束
+
+=== 类变量和类方法
+
+* 类变量定义在所有方法之外
+* 类方法使用 `@classmethod` 装饰器装饰
+* 类方法的第一个参数指向类本身， 通常使用 `cls` 命名
+* 相对于实例变量和实例方法， 类变量和类方法绑定到特定的类
+
+=== 静态方法
+
+* 使用 `@staticmethod` 装饰器装饰
+* 首参无特殊要求
+* 静态方法和普通的函数没有区别
+
+=== 属性
+
+* 使用 `@property`装饰器装饰的方法
+* 属性有 `getter` 、 `setter` 和 `deleter`
+
+== 继承
+
+=== 单继承
+
+[source,python]
+----
+class A(object):
+    pass
+
+class B(A):
+    pass
+----
+
+=== 重写与super
+* 子类中定义父类的同名方法，称之为重写
+* 子类中调用父类的方法， 使用super对象
+* super对象使用super方法生成
+
+=== 多继承
+
+[source,python]
+----
+class A(object):
+    pass
+
+class B(object):
+    pass
+
+class C(A, B):
+    pass
+----
+
+=== 多继承与方法选取
+
+[source,python]
+----
+class A(object):
+    def method(self):
+        print('method of A')
+
+class B(object):
+    def method(self):
+        print('method of B')
+
+class C(A, B):
+    pass
+
+class D(B, A):
+    pass
+
+c = C()
+c.method()
+
+d = D()
+d.method()
+----
+
+=== 多继承与方法选取
+
+[source,python]
+----
+class A(object):
+    def method(self):
+        print('method of A')
+
+class B(A):
+    def method(self):
+        print('method of B')
+
+class C(A, B):
+    pass
+
+class D(B, A):
+    pass
+
+c = C()
+c.method()
+d = D()
+d.method()
+----
+
+=== MRO
+
+* method resolution order
+* 本地优先级： 根据声明顺序从左往右查找
+* 单调性：所有子类中，也应满足其查找顺序
+
+=== C3算法
+
+[source]
+----
+class B(O) -> mro(B) = [B, O]
+class B(A1, A2, ...) -> mro(B) = [B] + merge(mro(A1), mro(A2), ... , [A1, A2, ...])
+----
+
+=== C3算法的merge步骤
+
+* 顺序遍历列表
+* 首元素满足一下条件，否则遍历下一个序列
+** 在其他序列也是首元素
+** 在其他序列里不存在
+* 从所有序列中移除此元素，合并到MRO序列中
+* 重复执行，直到所有序列为空或无法执行下去
+
+=== Mixin
+
+* mixin通过多重集成实现
+* mixin是组合的一种方式
+* mixin类通常需要满足：
+** 不能单独生成实例
+** 不能继承非Mixin的类
+
+== 专有方法/魔术方法
+
+* 总是以双下划线开始
+* 总是以双下划线结束
+
+=== 对象创建与销毁
+
+* `\__new__(cls [, ...])` 创建对象
+* `\__init__(self [, ...])` 初始化对象
+* `\__del__(self)` 销毁对象时调用
+
+=== 可视化对象
+
+* `\\__str__(self)` 当调用 `str(obj)` 时调用此方法, 必须返回一个 `str`
+* `\\__bytes__(self)` 当调用 `bytes(obj)` 时调用此方法， 必须返回一个 `bytes`
+* `\\__repr__(self)` 当调用 `repr(obj)` 时调用此方法，直接print一个对象时，会自动调用 `repr` 方法
+
+=== 比较运算符重载
+
+[cols="6,2", options="header"]
+|===
+|函数原型|运算符
+|obj.\\__lt__(self, other)| obj < other
+|obj.\\__le__(self, other)| obj \<= other
+|obj.\\__eq__(self, other)| obj == other
+|obj.\\__ne__(self, other)| obj != other
+|obj.\\__gt__(self, other)| obj > other
+|obj.\\__ge__(self, other)| obj >= other
+|===
+
+=== `\\__hash__` 与可hash对象
+
+* 当调用 `hash(obj)` 时， 事实上调用的是 `obj.\\__hash__()`
+* 一个对象，实现了 `__hash__(self)` 方法， 称为可hash对象
+
+
+=== `\\__bool__` 方法与bool判断
+
+* `\\__bool__` 方法总是返回 `True` 或 `False`
+* 当定义了 `\\__bool__` 方法时， 调用 `bool(obj)` 实际调用的是 `\\__bool__` 方法
+* 当未定义 `\\__bool__` 方法时， 调用 `bool(obj)` 会调用 `\\__len__` 方法， 返回0时为False， 非0时为True
+* 当 `\\__bool__` 和 `__len__` 都未定义时, `bool(obj)` 永远返回 `True`
+* `if` 和 `while` 等语句的条件，如果不是bool类型， 会自动使用 `bool` 方法，转化为bool类型
+
+=== `\\__call__` 与可调用对象
+
+* 当一个对象实现了 `\\__call__` 方法， 那么它就是一个可调用对象
+* 可调用对象可以向函数一样调用
+
+
+=== `\\__enter__ \\__exit__` 与 `with` 语句
+
+* `with` 语法与用途
+* `\\__enter__` 方法进入
+* `\\__exit__` 方法清理现场
+
+=== 反射
+
+* `\\__getattr__` 与 `\\__getattribute__`
+* `\\__setattr__`
+* `\\__delattr__`
+* `\\__dir__`
+* `\\__dict__` 与 `\\__slots__`
+
+
+=== 描述器
+
+* `\\__get__`
+* `\\__set__`
+* `\\__delete__`
+* 用类实现装饰器
