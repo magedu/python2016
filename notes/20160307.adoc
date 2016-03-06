@@ -1,0 +1,10 @@
+== 魔术方法
+
+* bool 与 \\__bool__ \\__len__
+* hash 与 \\__hash__
+* 反射 \\__dict__ \\__dir__ \\__getattr__ \\__setattr__  dir getattr setattr
+* 描述器  \\__get__ \\__set__ \\__delete__ 
+* 描述器 其实是一个方法传递 instance.property 等价于  Class.property.\\__get__(instance, Class)
+* instance.property = value  等价于 Class.property.\\__set__(instance, value)
+* del instance.property 等价于 Class.proppert.\\__delete__(instance)
+* @property @classmathod
