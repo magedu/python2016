@@ -1,3 +1,6 @@
 *.swp
 .python-version
 .ipynb_checkpoints
+.idea
+.iml
+__pycache__
